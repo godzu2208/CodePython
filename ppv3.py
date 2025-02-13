@@ -17,11 +17,12 @@ summary = df.groupby(['Username', 'Printer Name']).agg(
     Total_duplex=pd.NamedAgg(column='Duplex Pages', aggfunc='sum'),
     Total_grayscale=pd.NamedAgg(column='Total_grayscale_pages', aggfunc='sum'),
     Total_Color=pd.NamedAgg(column='Total Color Pages', aggfunc='sum'),
-    Documents=pd.NamedAgg(column='Document', aggfunc='count')
+    # Documents=pd.NamedAgg(column='Document', aggfunc='count')
+    Documents=pd.NamedAgg(column='Document', aggfunc=','.join)  # Kết hợp các nội dung của Document
 ).reset_index()
 
 # Lưu kết quả vào file Excel mới
-output_file = 'D:\Laptop\Công việc\papercut\weekly\summary2.xlsx'
+output_file = 'D:\Laptop\Công việc\papercut\weekly\summary3s.xlsx'
 summary.to_excel(output_file, index=False)
 
 print("Tổng hợp số liệu in đã được lưu vào", output_file)
